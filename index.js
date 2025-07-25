@@ -25,6 +25,9 @@ app.get('/', async (req, res) => {
     }
   });
 
+  app.listen(process.env.PORT, () =>
+    console.log(`Listening on http://localhost:${process.env.PORT}`)
+  );
 // ─── ROUTE 1 ───
 // GET “/” → fetch all custom‑object records & render homepage.pug
 app.get('/', async (req, res) => {
@@ -80,6 +83,3 @@ app.post('/update-cobj', async (req, res) => {
   * confirm your new routes work correctly.
 */
 
-app.listen(process.env.PORT || 3000, () =>
-  console.log('Listening on http://localhost:3000')
-);
