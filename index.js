@@ -1,4 +1,5 @@
-require('dotenv').config();               // ← add this at the very top
+require('dotenv').config();    
+console.log('Loaded HUBSPOT_TOKEN:', process.env.HUBSPOT_TOKEN ? '✅ yes' : '❌ no');           // ← add this at the very top
 const express = require('express');
 const axios = require('axios');
 const app = express();
@@ -13,6 +14,16 @@ app.use(express.json());
 
 const HUBSPOT_TOKEN = process.env.HUBSPOT_TOKEN;
 const OBJECT_ID    = '2-47828840';  // e.g. "2-1234567"
+
+app.get('/', async (req, res) => {
+    console.log('👉 GET / handler running');   // ← add this line
+    try {
+      // … your existing axios call and res.render …
+    } catch (err) {
+      console.error('Homepage error:', err.response?.data || err);
+      res.status(500).send('Error fetching records');
+    }
+  });
 
 // ─── ROUTE 1 ───
 // GET “/” → fetch all custom‑object records & render homepage.pug
@@ -61,6 +72,8 @@ app.post('/update-cobj', async (req, res) => {
     res.status(500).send('Error creating record');
   }
 });
+
+
 
 /*  
   * Leave the sample code commented out or delete it entirely once you
