@@ -8,26 +8,12 @@ app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(bodyParser.json())
 
-// ← remove PRIVATE_APP_ACCESS constant; use env instead
-// const PRIVATE_APP_ACCESS = '';
 
 const HUBSPOT_TOKEN = process.env.HUBSPOT_TOKEN;
-const OBJECT_ID    = '2-47828840';  // e.g. "2-1234567"
+const OBJECT_ID    = '2-47828840';  
 
-app.get('/', async (req, res) => {
-    console.log('👉 GET / handler running');   // ← add this line
-    try {
-      // … your existing axios call and res.render …
-    } catch (err) {
-      console.error('Homepage error:', err.response?.data || err);
-      res.status(500).send('Error fetching records');
-    }
-  });
-
-  app.listen(process.env.PORT, () =>
-    console.log(`Listening on http://localhost:${process.env.PORT}`)
-  );
 // ─── ROUTE 1 ───
 // GET “/” → fetch all custom‑object records & render homepage.pug
 app.get('/', async (req, res) => {
@@ -76,7 +62,9 @@ app.post('/update-cobj', async (req, res) => {
   }
 });
 
-
+app.listen(3002, () => {
+  console.log('Server is running on port 3002');
+});
 
 /*  
   * Leave the sample code commented out or delete it entirely once you
