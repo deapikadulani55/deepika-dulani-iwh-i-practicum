@@ -8,7 +8,7 @@ app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(bodyParser.json())
+
 
 
 const HUBSPOT_TOKEN = process.env.HUBSPOT_TOKEN;

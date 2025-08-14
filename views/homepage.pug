@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title= title
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    h1= title
+    a(href='/update-cobj') Add to this table
+    table(border='1')
+      thead
+        tr
+          th Name
+          th Game Title
+          th Power Level
+      tbody
+        if records && records.length
+          each record in records
+            tr
+              td= record.properties.name
+              td= record.properties.game_title
+              td= record.properties.power_level
+        else
+          tr
+            td(colspan='3') No records found.

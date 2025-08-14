@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title= title
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    h1= title
+    a(href='/') Return to the homepage
+    form(action='/update-cobj' method='POST')
+      div
+        label(for='name') Name:
+        input#name(type='text' name='name' required)
+      div
+        label(for='game_title') Game Title:
+        input#game_title(type='text' name='game_title' required)
+      div
+        label(for='power_level') Power Level:
+        input#power_level(type='number' name='power_level' required)
+      button(type='submit') Create Record
